@@ -78,6 +78,7 @@ const Login = (props) => {
             ) : (
                 <div className='auth-form-container'>
                     <h3>Login here</h3>
+                    {error && <p className="alert alert-danger">{error}</p>}
                     <form className="login-form" onSubmit={handleLogin}>
                         <label htmlFor="username">Username</label><br />
                         <input value={username} onChange={(e) => setUsername(e.target.value)} type="username" placeholder="username" required /><br />
@@ -87,6 +88,7 @@ const Login = (props) => {
                     </form><br />
                     <p> Don't have an account yet?</p>
                     <button className="link-btn" onClick={() => props.onFormSwitch('register')}> Register here</button>
+                    
                 </div>
             )}
         </div>
