@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 const LoginProfiles = [
     {
       id: 1,
@@ -55,7 +56,7 @@ const Login = (props) => {
             setIsAdmin(user.isAdmin);
             setError("");
         } else {
-            setError("Invalid username or password");
+            setError("Failed Login.");
         }
     };
 
@@ -71,14 +72,30 @@ const Login = (props) => {
         <div>
             {isLoggedIn ? (
                 <div>
-                    <h2>Welcome, {username}!</h2>
-                    <p>{isAdmin ? "You are an admin" : "You are not an admin"}</p>
+                    <h2>Success, {username}!</h2>
+                    {isAdmin ? (
+                        <div>
+                        <p>"You are an admin" </p>
+                        <p>Visit</p> <button className="link-btn" onClick={() => ('onlineshop')}>Manage Shop</button>
+                        </div> 
+                    ):( 
+                        <div>
+                            <p>"You are not an admin"</p>
+                            <p>Visit<button className="link-btn" onClick={() => ('onlineshop')}>Online Shop</button></p>
+                        </div>
+                        )
+                    }
+
+
+
                     <button onClick={handleLogout}>Logout</button>
                 </div>
             ) : (
                 <div className='auth-form-container'>
                     <h3>Login here</h3>
+
                     {error && <p className="alert alert-danger">{error}</p>}
+
                     <form className="login-form" onSubmit={handleLogin}>
                         <label htmlFor="username">Username</label><br />
                         <input value={username} onChange={(e) => setUsername(e.target.value)} type="username" placeholder="username" required /><br />
